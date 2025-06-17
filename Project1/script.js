@@ -16,16 +16,34 @@ const validateUser = () => {
   }
 };
 
+const userList = () => {
+    if (users.length === 0) {
+        return "No users found";
+    } else {
+        let str = "";
+        users.forEach((value, index) => {
+        str += `<p>${index + 1}. ${value.name} - ${value.email}</p>`;
+        });
+        return str;
+    }
+}
+
 const loginForm = () => {
-  const str = `<div>
+  const str = `
+    <div id="login-container">
     <h2> Login Form </h2>
     <p id="error-txt"></p>
     <p><input type="email" id="email" placeholder="Enter email" required></p>
     <p><input type="password" id="password" placeholder="Enter password" required></p>
     <p><button onclick="validateUser()" id="btn">Login</button></p>  
     <p>Don't have account?<button onclick="registerForm()" id="btn2">Create Account</button></p>  
+    </div>
+    <div id="user-container">
+    <h2> List of Users </h2>
+    ${userList()}
+    </div>
     `;
-  root.innerHTML = str + "</div>";
+  root.innerHTML = str ;
 };
 
 const saveUser = () => {
