@@ -1,30 +1,67 @@
+const users = [];
+let user = {};
+
+const validateUser = () => {
+  let email = document.getElementById("email").value;
+  let pass = document.getElementById("password").value;
+
+  // checking if user exists in users array
+  const found = users.find(
+    (value) => value.email === email && value.pass === pass
+  );
+  if (found) {
+    homePage(); // redirect to home page
+  } else {
+    document.getElementById("error-txt").innerHTML = "Invalid email or password";
+  }
+};
+
 const loginForm = () => {
-    const str = `<div>
-    <h3> Login Form </h3>
-    <p><input type="email" placeholder="Enter email" required></p>
-    <p><input type="password" placeholder="Enter password" required></p>
-    <p><button onclick="homePage()">Login</button></p>  
-    <p>Don't have account? <button onclick="registerForm()">Create Account</button></p>  
-    `
-    root.innerHTML = str + "</div>";
-}
+  const str = `<div>
+    <h2> Login Form </h2>
+    <p id="error-txt"></p>
+    <p><input type="email" id="email" placeholder="Enter email" required></p>
+    <p><input type="password" id="password" placeholder="Enter password" required></p>
+    <p><button onclick="validateUser()" id="btn">Login</button></p>  
+    <p>Don't have account?<button onclick="registerForm()" id="btn2">Create Account</button></p>  
+    `;
+  root.innerHTML = str + "</div>";
+};
+
+const saveUser = () => {
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+  let pass = document.getElementById("password").value;
+
+  // putting data in user object
+//   user.name = name;
+//   user.email = email;
+//   user.pass = pass;
+  // pushing user object to users array
+  users.push({
+    name,email, pass    //we are pushing data in users array directly in object format previously we were creating user object and then pushing it but in that data saveed was the same last inputted data
+  });
+  console.log(users);
+
+  loginForm(); // redirect to login form
+};
 
 const registerForm = () => {
-    const str = `<div>
-    <h3> Register Form </h3>
-    <p><input type="text" placeholder="Enter your name" required></p>
-    <p><input type="email" placeholder="Enter email" required></p>
-    <p><input type="password" placeholder="Enter password" required></p>
-    <p><button onclick="loginForm()">Register</button></p>  
-    <p>Already have account <button onclick="loginForm()">Login Here...</button></p>  
-    `
-    root.innerHTML = str + "</div>";
-}
+  const str = `<div>
+    <h2> Register Form </h2>
+    <p><input type="text" id="name" placeholder="Enter your name" required></p>
+    <p><input type="email" id="email" placeholder="Enter email" required></p>
+    <p><input type="password" id="password" placeholder="Enter password" required></p>
+    <p><button onclick="saveUser()" id="btn">Register</button></p>  
+    <p>Already have account?<button onclick="loginForm()" id="btn2">Login Here...</button></p>  
+    `;
+  root.innerHTML = str + "</div>";
+};
 
 const homePage = () => {
-    const str = `<div>
-    <h3> Welcome to Home Page </h3>
-    <p><button onclick="loginForm()">Logout</button></p>
-    `
-    root.innerHTML = str + "</div>";
-}
+  const str = `<div>
+    <h2> Welcome to Home Page </h2>
+    <p><button onclick="loginForm()" id="btn">Logout</button></p>
+    `;
+  root.innerHTML = str + "</div>";
+};
