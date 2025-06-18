@@ -53,6 +53,8 @@ input {
     background: none;
     color: #3c8cd7;
     cursor: pointer;
+}
+#btn2:hover {
     text-decoration: underline;
 }
 
