@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Tag</title>
+  </head>
+  <body>
+    <h1>Form Tags</h1>
+    <form action="">
+      <!-- <p><input type="text" required autofocus maxlength="5"/></p> -->
+      <!-- <p><input type="text" value="Amit Singh" readonly></p> -->
+      <p><input type="text" value="Amit Singh" disabled size="10px" /></p>
+      <p><input type="text" placeholder="Enter Name" required /></p>
+      <input type="submit" value="Submit" />
+      <button type="submit">Submit</button>
+      <input type="button" value="Submit" />
+      <input type="image" src="img1.JPG" width="80px" height="40px" />
+    </form>
+
+    <br /><br />
+
+    <fieldset style="width: 300px; border: 2px solid black">
+      <legend>Login Form</legend>
+      <p>
+        <label for="email">Email : </label>
+        <input type="email" placeholder="Enter email" required />
+      </p>
+      <p>
+        <label for="password">Password : </label>
+        <input type="password" placeholder="Enter password" required />
+      </p>
+      <button>Login</button>
+    </fieldset>
+
+    <br /><br />
+
+    <fieldset style="width: 500px; border: 2px solid black">
+      <legend>Register Form</legend>
+      <p>
+        <label for="name">Name : </label>
+        <input type="text" placeholder="Enter Name" required />
+      </p>
+      <p>
+        <label for="email">Email : </label>
+        <input type="email" placeholder="Enter email" required />
+      </p>
+      <p>
+        <label for="Age">Age : </label>
+        <input type="number" placeholder="Enter age"/>
+      </p>
+      <p>
+        <label for="password">Password : </label>
+        <input type="password" placeholder="Enter password" required />
+      </p>
+      <p>
+        <label for="date">Date : </label>
+        <input type="date" />
+      </p>
+      <p>
+        <label for="courses">Select Course : </label>
+        <input type="checkbox" checked /> MERN Stack
+        <!-- default checked -->
+        <input type="checkbox" /> Java Full Stack
+        <input type="checkbox" /> Python Full Stack
+      </p>
+
+      <p>
+        <label for="batches">Select Batch : </label>
+        <input type="radio" name="batch" checked />Morning Batch
+        <!-- default checked -->
+        <input type="radio" name="batch" />Evening Batch
+      </p>
+
+      <p>
+        <label for="Degree">Select Degree : </label>
+        <select>
+          <option>B.Tech</option>
+          <option selected>BE</option>
+          <!-- default selected -->
+          <option>B.Sc</option>
+        </select>
+      </p>
+
+      <p>
+        <input type="file" />
+      </p>
+      <p>
+        <label for="color">Select Color : </label>
+        <input type="color" />
+      </p>
+
+      <p>
+        <textarea rows="4" cols="50" placeholder="About me"></textarea>
+      </p>
+
+      <p>
+        <label>Select City : </label>
+        <select>          
+          <!-- Here we have used optgroup which is used to divide the cities on basics of country -->
+          <optgroup label="India">
+            <option>Delhi</option>
+            <option>Faridabad</option>
+          </optgroup>
+          <optgroup label="USA">
+            <option>Colombus</option>
+            <option>LA</option>
+            <option>New York</option>
+          </optgroup>
+        </select>
+      </p>
+
+      <p>
+        <input type="checkbox">
+        <label>Remember Me</label>
+      </p>
+
+
+      <!-- Datalist -->
+      <p>
+        <label for="country">Select country : </label>
+        <input list="country">
+        <datalist id="country">
+          <option>India</option>
+          <option>USA</option>
+          <option>UK</option>
+          <option>Russia</option>
+        </datalist>
+      </p>
+
+      <input type="reset" value="Reset" />
+      <button>Register</button>
+    </fieldset>
+  </body>
+</html>
