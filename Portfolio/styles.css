@@ -1,69 +1,137 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
-.body {
-  background-color: #f4f4f4;
-}
-.container {
-  position: sticky;
-  overflow: auto;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  scroll-behavior: smooth;
-  height: 100%;
+
+body {
+  background-color: #d2cdd8ad;
+  font-family: "Poppins";
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
-  padding: 20px 40px;
-}
-
-.header {
-  color: #fff;
-  font-size: 1.3rem;
+  background: rgba(10, 31, 59, 0.95);
+  height: 90px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
 }
 
 .menu ul {
   display: flex;
+  justify-content: center;
+}
+
+.menu ul li {
   list-style: none;
-  gap: 30px;
+  margin: 0px 25px;
 }
 
 .menu ul li a {
   text-decoration: none;
-  font-size: 1.1rem;
   color: #fff;
-  padding: 8px 12px;
-  border-radius: 8px;
 }
 
-.menu ul li a:hover{
+.menu ul li a:hover {
+  color: rgb(190, 190, 220);
   text-decoration: underline;
 }
 
-.main-container {
+.logo {
+  font-size: 1.8rem;
+  color: #fff;
+  margin-left: 30px;
+  font-weight: 700;
+}
+
+.home {
   display: flex;
-  padding-top: 50px;
+  justify-content: space-around;
+  align-items: center;
+  margin: 65px 0px;
+  padding: 100px 0px;
 }
 
-.data-row {
-  border: 1px solid;
-  padding: 50px 90px;
+.home > div {
+  width: 30%;
 }
 
-.data-row h1 {
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 2em;
+.rightSection img {
+  width: 110%;
 }
 
-.img-row {
-  border: 1px solid;
+.leftSection {
+  font-size: 2.2rem;
+  font-weight: 450;
 }
 
+.name {
+  color: #6a11cb;
+}
+
+.btn {
+  border: none;
+  background-color: #6a11cb;
+  border-radius: 2.5rem;
+  margin: 15px 5px;
+}
+
+.btn a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.project-container {
+  background: linear-gradient(180deg, #0d2749 0%, #1a0b2e 100%);
+  padding: 12px;
+}
+
+.project-container h1 {
+  font-size: 2rem;
+  color: #ffffff;
+  /* margin: 20px 30px; */
+  padding: 15px 40px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+}
+
+.project-card {
+  border: 1px solid rgba(0, 184, 255, 0.1);
+  border-radius: 20px;
+  background: linear-gradient(135deg, #163865 0%, #361a5a 100%);
+  margin: 25px 30px;
+  padding: 20px 25px;
+  transition: all 0.2s ease;
+}
+
+.project-card h3 {
+  color: #ffffff;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+
+.project-card p {
+  color: #8b8b8b;
+}
+
+.project-card:hover{
+  transform: translateY(-10px)
+}
+
+.footer-content {
+   background: rgba(10, 31, 59, 0.95);
+   padding: 2rem;
+   color: #ffffff;
+   text-align: center;
+}

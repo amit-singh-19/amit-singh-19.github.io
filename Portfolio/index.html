@@ -3,36 +3,69 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="/Portfolio/styles.css" />
+    <title>Portfolio Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="container">
+    <header>
       <nav class="navbar">
-        <div class="header"><h1>Amit Singh</h1></div>
+        <div class="logo">Amit Singh</div>
         <div class="menu">
           <ul>
             <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
+            <li><a href="#project">Projects</a></li>
+            <li><a href="#service">Services</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
       </nav>
-    </div>
+    </header>
 
-    <div class="main-container">
-      <div class="data-row">
-        <h1>Full Stack Developer</h1>
-        <p>A Full Stack Developer is a software professional skilled in both frontend (client-side) and backend (server-side) development. They are capable of designing, building, and maintaining complete web applications, including databases, servers, APIs, and user interfaces.</p>
-        <button><a href="/Project1/index.html"></a>MyBank</button>
-        <button><a href="/Project2/index.html"></a>FoodMart</button>
+    <main>
+      <section class="home">
+        <div class="leftSection">
+          Hi, My name is <span class="name">Amit</span>
+          <div>and I am a passinated Full Stack developer</div>
+          <button class="btn"><a href="/Project1/index.html">MyBank</a></button>
+          <button class="btn"><a href="/Project2/index.html">FoodMart</a></button>
+        </div>
+        <div class="rightSection">
+          <img src="img1.png" alt="fullstack image">
+        </div>
+      </section>
+
+      <section class="projects">
+        <div class="project-container">
+          <h1>Projects</h1>
+          <div class="project-grid">
+            <div class="project-card">
+              <h3>Project 1</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident repellendus est neque magni voluptatibus modi architecto id eveniet nisi vel, labore aut sint a saepe eum quis placeat perspiciatis sunt exercitationem? Facere quam et deleniti, vel, quo eaque eligendi labore harum porro provident magni qui ab at in! Quidem, accusamus?</p>
+            </div>
+            <div class="project-card">
+              <h3>Project 2</h3>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum quibusdam labore similique, eveniet totam aperiam ratione, consequatur reiciendis accusantium magnam nihil praesentium odit neque optio tempora. Nesciunt nobis, quasi, saepe architecto atque illo exercitationem mollitia dolorum vero fuga repellendus, impedit aliquid! Corporis vel dicta est quibusdam omnis, aliquam facilis voluptate!</p>
+            </div>
+            <div class="project-card">
+              <h3>Project 3</h3>
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut recusandae id explicabo suscipit tempore, sunt esse doloribus, quasi odio consequatur nostrum quas alias magni quia aperiam facere sit sapiente nesciunt veritatis? Quisquam, quibusdam doloribus excepturi alias neque totam consectetur perspiciatis accusantium. Dolor dolorem ea, repudiandae veritatis harum illo tempora modi?</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2025 Amit Singh. All rights reserved.</p>
       </div>
-      <div class="img-row">
-        <img src="full-stack-1.jpg" alt="image" width="500px">
-      </div>
-    </div>
-    
+    </footer>
   </body>
 </html>
