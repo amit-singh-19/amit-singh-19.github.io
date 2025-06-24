@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      let user = {};
+      let users = [];
+
+      const adduser = () => {
+        users.push({...user});
+        console.log(users);
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Registrtion Form</h1>
+    <p><input type="text" placeholder="Enter Name" onchange="user.name = event.target.value"/></p>
+    <p><input type="text" placeholder="Enter Email" onchange="user.email = event.target.value"/></p>
+    <p><input type="password" placeholder="Enter Password" onchange="user.pass = event.target.value" /></p>
+    <button onclick="adduser()">Submit</button>
+  </body>
+</html>
