@@ -11,6 +11,26 @@ body {
   font-family: "Roboto";
 }
 
+.nav{
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.nav-btn{
+  padding: 10px 20px;
+  border: none;
+  background: #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #fff;
+}
+
+.nav-btn:hover{
+  background: #0056b3;
+}
+
 .container {
   border: 1px solid red;
   max-width: 700px;
@@ -45,7 +65,7 @@ h2 {
   border-radius: 8px;
 }
 
-.cart-item div{
+.add-cart-btn{
     border: 2.5px solid blueviolet;
     width: 90px;
     border-radius: 15px;

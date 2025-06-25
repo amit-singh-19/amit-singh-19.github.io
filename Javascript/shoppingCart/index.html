@@ -7,14 +7,22 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="nav">
+      <button onclick="showHome()" class="nav-btn">🏠 Home</button>
+      <button onclick="showCartProducts()" class="nav-btn">🛒 Cart</button>
+    </div>
     <div class="container">
-      <h1>Shopping Cart</h1>
-      <h2>Product List</h2>
-      <div class="products" id="product-container"></div>
-      <h2>My Cart</h2>
-      <div class="cart" id="cart-container"></div>
-      <div class="orderValue">
-        <strong>Order Value: </strong> ₹<span id="order-total">0</span>
+      <div id="home-section">
+        <h2>🛍 Products</h2>
+        <div class="products" id="product-container"></div>
+      </div>
+
+      <div id="cart-section" style="display: none;">
+        <h2>🧺 My Cart</h2>
+        <div class="cart" id="cart-container"></div>
+        <div class="orderValue">
+          <strong>Order Value: </strong> ₹<span id="order-total">0</span>
+        </div>
       </div>
     </div>
     <script src="app.js"></script>

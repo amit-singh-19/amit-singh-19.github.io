@@ -1,0 +1,72 @@
+Type these commands in command prompt
+- mongosh
+- show dbs
+- use <database name>
+- show collections
+- db.<collection name>.insertOne({key: value})           //db.users.insertOne({name: "John", age: 21})
+- db.<collection name>.find()                        //db.users.find() - To show the content of the collection(users)
+- db.users.findOne()
+-db.users.drop()
+- db.users.insertMany([
+    {name: "Shawn",age: 23}, 
+    {name: "Chastity", age:27}
+])
+
+**********************************************************************
+db.employees.insertOne({name: "John Smith",  email: "john@gmail.com", departement: "IT", salary: 2500, location: ["FL", "TX"], date: Date()})
+db.employees.insertMany([{name: "Mike",  email: "mike@gmail.com", departement: "IT", salary: 2480, location: ["LA", "TX"], date: Date()}, {name: "Lizo",  email: "lizo@gmail.com", departement: "Service", salary: 2100, location: ["XT", "TX"], date: Date()}])
+
+- db.employees.find().limit(1)             //print first data only
+- db.employees.find().skip(1)              //don't print the first data
+- db.employees.find().limit(1).skip(1);    // 
+- db.employees.find().sort({name: 1})     //sort in asc order
+- db.employees.find().sort({name: -1})  //sort in desc order
+- db.employees.find().sort({name: 1}).limit(1)
+- db.employees.find().sort({name: -1}).limit(1)    //desc ka first element dikhaega
+- db.employees.find({departement: "IT"})
+- db.employees.find({},{name:1})  // name field is visible only
+- db.employees.find({}, {_id:0, name:1}) // this will not show id only name is visible
+- db.employees.find({}, {_id:0, name:1, departement: 1})
+- db.employees.find({location:"FL"})
+- db.employees.find({}, {empName: "$name"})
+
+**********************************************************************
+
+- db.employees.find({departement: "IT"})
+- db.employees.find({departement: {$eq: "IT"}}) //equal
+
+- db.employees.find({salary: {$gt: 2400}})   //$gt = greater than
+- db.employees.find({salary: {$gte: 2400}})  //$gte = greater than equal To
+
+- db.employees.find({salary: {$lt: 2400}})  //less
+- db.employees.find({salary: {$lte: 2400}})   //less than equal to
+
+- db.employees.find({salary: {$ne: 2500}})  //not equal
+
+- db.employees.find({salary: {$ne: 2500}}, {name: 1})     //first curly brackets is filter and second is projection
+
+- db.employees.find({salary: {$ne: 2500}, departement: {$eq: "IT"}}, {name: 1})
+- db.employees.find({salary: {$ne: 2500}, departement: {$eq: "IT"}}, {name: 1}).limit(1);
+
+- db.employees.find({$and: [{salary: {$ne: 2500}, departement: {$eq: "IT"}}]})
+- db.employees.find({$or: [{salary: {$ne: 2500}, departement: {$eq: "IT"}}]})
+
+**********************************************************************
+//Display the top two highest paid employees
+- db.employees.find().sort({salary: -1}).limit(2);
+
+**********************************************************************
+
+db.users.insertOne({name: "Amit", email: "amit@gmail.com", pass: 1234})
+db.users.insertMany([{name: "Michel", email: "Michel@gmail.com", pass: 12345},{name: "Deep", email: "Deep@gmail.com", pass: 12345}])
+
+db.users.find({},{_id:0, name:1})
+db.users.find({name: "Michel"},{_id:0, email:1})
+db.users.find({name: "Amit"},{_id:0, name:1, email:1})
+
+db.users.insertOne({name: "Shawn", points: 5});
+db.users.insertOne({name: "Shawn", points: 3});
+db.users.insertOne({name: "Shawn", points: 7});
+
+db.users.find({points: {$gt: 3}}, {points: 1});
+db.users.find().sort({points: -1}).limit(1);
