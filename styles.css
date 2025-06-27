@@ -109,7 +109,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2.5rem;
-  max-width: 1200px;
+  max-width: 1350px;
   margin: 0 auto 1rem;
 }
 
@@ -118,7 +118,7 @@ body {
   border-radius: 20px;
   background: linear-gradient(135deg, #163865 0%, #361a5a 100%);
   margin: 25px 30px;
-  padding: 20px 25px;
+  padding: 20px 15px;
   transition: all 0.2s ease;
 }
 
@@ -134,6 +134,27 @@ body {
 
 .project-card:hover {
   transform: translateY(-10px);
+}
+
+.view-project-btn{
+  margin: 20px 0px;
+  padding: 0.6rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  background: rgba(0, 184, 255, 0.05);
+}
+
+.view-project-btn a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.view-project-btn:hover{
+  background: #00b8ff;
+}
+.view-project-btn a:hover{
+  color: #0a1f3b;
 }
 
 .services-container {
