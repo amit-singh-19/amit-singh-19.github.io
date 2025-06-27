@@ -109,18 +109,19 @@ db.employees.updateMany({email: "john@gmail.com"},{$pop: {skills: -1}}) //remove
 
 -db.employees.updateOne({email: "brain@gmail.com"},{$set:{name:"Brain"}}, {upsert: true});  //with upsert it will add the new field in the document
 **********************************************************************
-
-Delete commands
+----------Delete commands----------
 
 - db.employees.deleteOne({email: "brain@gmail.com"});
 - db.employees.deleteMany({departement: "IT"});
 
 **********************************************************************
-Indexes
+----------Indexes----------
 
 - db.employees.getIndexes();
 - db.employees.createIndex({email: 1});
 - db.employees.dropIndex("email_1");
+
+- db.employees.find({name: 'Amit'}).explain('executionStats')    # it will provide information weather we are using index or not
 
 **********************************************************************
 ---------Aggregations---------
