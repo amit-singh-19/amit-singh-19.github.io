@@ -70,3 +70,201 @@ db.users.insertOne({name: "Shawn", points: 7});
 
 db.users.find({points: {$gt: 3}}, {points: 1});
 db.users.find().sort({points: -1}).limit(1);
+
+**********************************************************************
+
+db.employees.insertMany([{name: "Amy", emial: "amy@gmail.com", departement: "HR", salary: 2000, location: ["NY", "TX"], date: Date()}, {name: "Rafeal", emial: "rafeal@gmail.com", departement: "Admin", salary: 1500, location: ["OH", "TX"], date: Date()}])
+
+- db.<collection-name>.countDocuments()  // give total number of document
+
+**********************************************************************
+Update Collection commands
+- db.<collection-name>.updateOne({},{$set:{}})
+- db.<collection-name>.updateMany({},{$set:{}})  //first object is filter and second object is what we have to update
+
+db.employees.updateOne({email: "john@gmail.com"},{$set:{salary:2000}});
+
+db.employees.updateMany({},{$set:{points:1}});  //update all documents and set points 1. If the points is not there then it will add it to the document
+
+db.employees.updateMany({departement:"IT"},{$inc:{points:1}});  //$inc means increment operator it will increase the point by 1
+
+db.employees.updateMany({departement:"IT"},{$inc:{points:3}});  //increment by 3
+
+db.employees.updateMany({departement:"IT"},{$inc:{points:-1}});  //decrement by 1
+
+//if we have to rename the field name then
+db.employees.updateMany({},{$rename:{points:"score"}});
+
+db.employees.updateMany({},{$unset:{score:""}});  //remove score field from all the documents
+
+db.employees.updateMany({},{$push: {skills: "Java"}}); //add skills field that store array of element
+db.employees.updateMany({},{$push: {skills: "Python"}});
+db.employees.updateMany({email: "john@gmail.com"},{$push: {skills: "MERN"}});
+
+db.employees.updateMany({},{$pull: {skills: "Python"}});  //pull python skill from the array
+
+db.employees.updateMany({},{$addToSet:{skills: "Python"}});  //this command make uniqueness in the skills field like if we again push the same skill it will not modify it
+db.employees.updateMany({},{$pop: {skills: 1}}) // remove the last elementof skills
+db.employees.updateMany({email: "john@gmail.com"},{$pop: {skills: -1}}) //remove first element
+
+-db.employees.updateOne({email: "brain@gmail.com"},{$set:{name:"Brain"}}, {upsert: true});  //with upsert it will add the new field in the document
+**********************************************************************
+
+Delete commands
+
+- db.employees.deleteOne({email: "brain@gmail.com"});
+- db.employees.deleteMany({departement: "IT"});
+
+**********************************************************************
+Indexes
+
+- db.employees.getIndexes();
+- db.employees.createIndex({email: 1});
+- db.employees.dropIndex("email_1");
+
+**********************************************************************
+---------Aggregations---------
+
+db.employees.aggregate([
+    {$match:{departement:"IT"}},
+    {$project: {name:1,salary:1}}
+]);
+
+db.employees.aggregate([
+    {$match:{departement:"IT"}},
+    {$project: {name:1,salary:1}},
+    {$sort: {salary: -1}}
+]);
+
+db.employees.aggregate([
+    {$match:{departement:"IT"}},
+    {$project: {name:1,salary:1}},
+    {$sort: {salary: -1}},
+    {$limit: 1}
+]);
+
+db.employees.aggregate([
+    {$group:
+        {_id: "departement",
+        total: {$sum: '$salary'}
+        }
+    },
+]);
+
+# name field print nhi hoga baki sab print hoga
+db.employees.aggregate([
+    {$project: {name: 0}},
+]);
+
+db.employees.aggregate([
+    {$project: {empName: "$name"}},
+]);
+
+db.employees.aggregate([
+    {$project: {_id: 0, name: 1, salary: 1, bonus:{$multiply: ["$salary", 2]}}},
+]);
+
+# Display name, email, salary of all IT employees-
+db.employees.aggregate([
+    {$match: {departement: "IT"}},
+    {$project: {_id: 0, name:1, email:1, salary:1}},
+]);
+
+#Display annual salary of all employees - 
+db.employees.aggregate([
+    {$project: {_id: 0, name: 1, salary: 1, annualSalary: {$multiply: ["$salary", 12]}}}
+])
+
+#Display employees whose salary is greater then 3000 and show CTC instead of Salary field
+db.employees.aggregate([
+    {$match: {salary: [$gt]}}
+])
+
+#Insert the following document into a collection called students:
+{
+    "name": "Alice Johnson",
+    "age": 23,
+    "courses": ["Math", "Physics"],
+    "enrolled": true
+}
+
+db.students.insertOne({
+    name: "Alice Johnson", 
+    age:23, 
+    courses: ["Math", "Physics"],
+    enrolled: true,
+});
+
+db.students.insertMany([
+    {name: "Tom", age: 22},
+    {name: "Sara", age: 24},
+    {name: "Mike", age: 21},
+]);
+
+#Calculate the average age of all students
+db.students.aggregate([
+    {$group: 
+        {_id: null, 
+        avgAge: {$avg: "$age"},
+        }
+    }
+]);
+
+#update the age of the student named "Alice Johnson" to 24
+db.students.updateOne(
+    {name: "Alice Johnson"},
+    {$set: {age: 24}}
+)
+
+#Add a new course "Chemistry" to a student's courses array, only if it doesn't already exist
+db.students.updateMany(
+    {},
+    {$addToSet: {courses: "Chemistry"}}
+)
+
+#Increment age by 1 for all enrolled student
+db.students.updateMany(
+    {},
+    {$inc: {age: 1}}
+)
+
+#Remove a course "Physics" from Alice's course
+db.students.updateOne(
+    {name: "Alice Johnson"},
+    {$pull: {courses: "Physics"}}
+)
+
+#collection name in address
+db.address.insertMany([
+    {
+        studentId: ObjectId('685cdd41550bce35789f990c'),
+        city: "LA",
+        country: "USA"
+    },
+    {
+        studentId: ObjectId('685cdd8e550bce35789f990d'),
+        city: "London",
+        country: "UK"
+    },
+    {
+        studentId: ObjectId('685cdd8e550bce35789f990e'),
+        city: "Miamia",
+        country: "USA"
+    },
+    {
+        studentId: ObjectId('685cdd8e550bce35789f990f'),
+        city: "Jacksonvilla",
+        country: "USA"
+    },
+]);
+
+db.students.aggregate([
+    {$lookup: {
+        from:"address",
+        localField:"_id",
+        foreignField:"studentId",
+        as: "address"
+    }},
+    {$unwind:"$address"},
+    {$project: {name:1, "address.city":1, "address.country":1}}
+])
