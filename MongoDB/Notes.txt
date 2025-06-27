@@ -234,6 +234,8 @@ db.students.updateOne(
     {name: "Alice Johnson"},
     {$pull: {courses: "Physics"}}
 )
+**********************************************************************
+----------lookup operator---------
 
 #collection name in address
 db.address.insertMany([
@@ -268,4 +270,89 @@ db.students.aggregate([
     }},
     {$unwind:"$address"},
     {$project: {name:1, "address.city":1, "address.country":1}}
+])
+
+----------------------------------------------------------------------
+# ---posts collection---
+    p1- Post 1
+    p2- Post 2
+
+> db.posts.insertOne({
+    _id: "p1", post: "Post 1"
+});
+> db.posts.insertOne({
+    _id: "p2", post: "Post 2"
+})
+
+
+# ---comments collection---
+    c1-p1-comment1
+    c2-p1-comment2
+    c3-p2-comment1
+    c4-p2-comment2
+    c5-p2-comment3
+
+> db.comments.insertOne({
+    _id: "c1",
+    pid: "p1",
+    comment: "This is comment 1 of post 1"
+})
+> db.comments.insertMany([
+    {_id: "c2", pid: "p1", comment: "This is comment 2 of post 1"},
+    {_id: "c3", pid: "p2", comment: "This is comment 1 of post 2"},
+    {_id: "c4", pid: "p2", comment: "This is comment 2 of post 2"},
+    {_id: "c5", pid: "p2", comment: "This is comment 3 of post 2"},
+])
+
+# ---lookup operator---
+> db.posts.aggregate([
+    {
+        $lookup: {
+            from: "comments",
+            localField: "_id",
+            foreignField: "pid",
+            as: "comment"
+        }
+    }
+])
+
+# To show only posts 
+> db.posts.aggregate([
+    {
+        $lookup: {
+            from: "comments",
+            localField: "_id",
+            foreignField: "pid",
+            as: "comment"
+        }
+    },
+    {$project: {
+        _id:0, post: 1
+    }}
+])
+
+#if we want the comment array to become one object then we can use unwind 
+> db.posts.aggregate([
+    {
+        $lookup: {
+            from: "comments",
+            localField: "_id",
+            foreignField: "pid",
+            as: "comment"
+        }
+    },
+    {$unwind: "$comment"}
+])
+
+> db.posts.aggregate([
+    {
+        $lookup: {
+            from: "comments",
+            localField: "_id",
+            foreignField: "pid",
+            as: "comment"
+        }
+    },
+    {$unwind: "$comment"},
+    {$project: {_id: 0, post: 1, "comment.comment": 1}}
 ])

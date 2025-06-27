@@ -138,16 +138,18 @@ body {
 
 .view-project-btn{
   margin: 20px 0px;
-  padding: 0.6rem 1rem;
   border-radius: 50px;
   font-size: 0.9rem;
   background: rgba(0, 184, 255, 0.05);
 }
 
 .view-project-btn a {
+  display: inline-block;
   text-decoration: none;
+  padding: 0.6rem 1rem;
   font-size: 0.9rem;
   color: #fff;
+  cursor: pointer;
 }
 
 .view-project-btn:hover{
