@@ -9,6 +9,10 @@ body {
   font-family: "Poppins";
 }
 
+section {
+  scroll-margin-top: 80px;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -93,6 +97,7 @@ body {
   background-color: rgb(62, 61, 61);
 }
 
+
 .project-container {
   background: linear-gradient(180deg, #0d2749 0%, #1a0b2e 100%);
   padding: 12px;
@@ -103,6 +108,7 @@ body {
   color: #ffffff;
   /* margin: 20px 30px; */
   padding: 15px 40px;
+  text-align: center;
 }
 
 .project-grid {

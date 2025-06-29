@@ -236,6 +236,8 @@ db.students.updateOne(
 )
 **********************************************************************
 ----------lookup operator---------
+#lookup is like JOIN in SQL it lets us join documents from different collection for matching field
+#lookup is used in Aggregations pipeline
 
 #collection name in address
 db.address.insertMany([
@@ -356,3 +358,20 @@ db.students.aggregate([
     {$unwind: "$comment"},
     {$project: {_id: 0, post: 1, "comment.comment": 1}}
 ])
+
+**********************************************************************
+----------Group operator---------
+#$group operator in MongoDB is a powerful aggregation stage that’s used to group documents by a field and perform operations like count, sum, avg, etc.
+#It's like GroupBy in SQL
+#Performs aggregate functions like $sum, $avg, $max, $min, etc.
+
+> db.collection.aggregate([
+  {
+    $group: {
+      _id: "$<field>",            // Grouping key
+      <outputField>: { <operator>: "$<inputField>" }
+    }
+  }
+])
+
+
