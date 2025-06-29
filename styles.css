@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #d2cdd8ad;
   font-family: "Poppins";
@@ -96,7 +100,6 @@ section {
 #btn2 {
   background-color: rgb(62, 61, 61);
 }
-
 
 .project-container {
   background: linear-gradient(180deg, #0d2749 0%, #1a0b2e 100%);
