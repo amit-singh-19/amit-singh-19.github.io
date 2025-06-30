@@ -375,3 +375,137 @@ db.students.aggregate([
 ])
 
 
+**********************************************************************
+----------condition operator----------
+> db.employees.aggregate([
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      salary: 1,
+      Grade: { $cond: [{ $gte: ["$salary", 2000] }, "Grade A", "Grade B"] },
+    },
+  },
+]);
+
+> db.employees.aggregate([
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      salary: 1,
+      Grade: {
+        $cond: {
+          if: { $gte: ["$salary", 2000] },
+          then: "Grade A",
+          else: "Grade B",
+        },
+      },
+    },
+  },
+]);
+
+----------------------------------------------------------------------
+
+Add a new field strSalary in employees
+
+strSalary: "2500" for all IT employees-
+> db.employees.updateMany({departement:"IT"},{$set: {strSalary: "2500"}});
+
+strSalary: "1000" for all other employees-
+> db.employees.updateMany({departement:{$ne: "IT"}},{$set: {strSalary: "1000"}});
+
+----------convert operator----------
+# $convert operator in MongoDB is used to convert a value from one data type to another — like from string to number, or date to string.
+
+{
+  $convert: {
+    input: <expression>,
+    to: <targetType>,
+    onError: <expression>,      // (optional)
+    onNull: <expression>        // (optional)
+  }
+}
+
+
+> db.employees.aggregate([
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      departement: 1,
+      Sal: { $convert: { input: "$strSalary", to: "int" } },
+    },
+  },
+  {
+    $group: {
+      _id: "$departement",
+      total: { $sum: "$Sal" },
+    },
+  },
+]);
+
+----------out operator----------
+#  $out stage is used in the aggregation pipeline to write the results of the pipeline into a new collection (or overwrite an existing one).
+
+db.sourceCollection.aggregate([
+  { /* your pipeline stages here */ },
+  {
+    $out: "targetCollection"
+  }
+])
+
+
+> db.employees.aggregate([
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      departement: 1,
+      Sal: { $convert: { input: "$strSalary", to: "int" } },
+    },
+  },
+  {
+    $group: {
+      _id: "$departement",
+      total: { $sum: "$Sal" },
+    },
+  },
+  {
+    $out: "deptWiseSalary"
+  }
+]);
+
+----------------------------------------------------------------------
+---------- View ----------
+ #A view is a saved query.
+It looks and behaves like a regular collection, but it's read-only.
+#Internally, a view runs an aggregation pipeline when queried.
+#Think of a view as a virtual collection based on one or more real collections.
+
+db.createView(
+  "viewName",           // name of the view
+  "sourceCollection",   // base collection
+  [                     // aggregation pipeline
+    { $match: { age: { $gte: 18 } } },
+    { $project: { name: 1, age: 1 } }
+  ]
+)
+
+
+> db.createView("deptWiseSalaryView", "employees", [
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      departement: 1,
+      Sal: { $convert: { input: "$strSalary", to: "int" } },
+    },
+  },
+  {
+    $group: {
+      _id: "$departement",
+      total: { $sum: "$Sal" },
+    },
+  }
+]);

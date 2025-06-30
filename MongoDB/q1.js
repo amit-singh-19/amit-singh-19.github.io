@@ -21,46 +21,109 @@ db.marks.insertMany([
 ]);
 
 db.marks.find({}, { _id: 0, name: 1, term: 1, subject: 1, marks: 1 });
-db.marks.find({}, { _id: 0, name: 1, term: 1, subject: 1, marks: 1 }).sort({name:1});
-db.marks.find({}, { _id: 0, name: 1, term: 1, subject: 1, marks: 1 }).sort({name:1, term:1});
-db.marks.find({}, { _id: 0, name: 1, term: 1, subject: 1, marks: 1 }).sort({term:1});
+db.marks
+  .find({}, { _id: 0, name: 1, term: 1, subject: 1, marks: 1 })
+  .sort({ name: 1 });
+db.marks
+  .find({}, { _id: 0, name: 1, term: 1, subject: 1, marks: 1 })
+  .sort({ name: 1, term: 1 });
+db.marks
+  .find({}, { _id: 0, name: 1, term: 1, subject: 1, marks: 1 })
+  .sort({ term: 1 });
 
 db.marks.aggregate([
-    {$group:{
-        _id: "$name",
-        total: {$sum: "$marks"}
-    }
-    }
-])
+  {
+    $group: {
+      _id: "$name",
+      total: { $sum: "$marks" },
+    },
+  },
+]);
 
 db.marks.aggregate([
+  {
+    $group: {
+      _id: "$subject",
+      total: { $sum: "$marks" },
+    },
+  },
+]);
+
+db.marks.aggregate([
+  {
+    $group: {
+      _id: "$term",
+      total: { $sum: "$marks" },
+    },
+  },
+]);
+
+db.marks
+  .aggregate([
     {
-        $group: {
-            _id: "$subject",
-            total: {$sum: "$marks"}
-        }
-    }
-])
+      $group: {
+        _id: { name: "$name", subject: "$subject" },
+        total: { $sum: "$marks" },
+      },
+    },
+  ])
+  .sort({ _id: 1 });
 
-db.marks.aggregate([
+db.marks
+  .aggregate([
     {
-        $group: {
-            _id: "$term",
-            total: {$sum: "$marks"}
-        }
-    }
-])
+      $group: {
+        _id: { name: "$name", term: "$term" },
+        total: { $sum: "$marks" },
+      },
+    },
+  ])
+  .sort({ _id: 1 });
 
-db.marks.aggregate([
-    {$group:{
-        _id:{name: "$name", subject: "$subject"},
-        total: {$sum: "$marks"}
-    }}
-]).sort({_id: 1})
+// ----------------------------------------------------------------------
+db.employees.aggregate([
+  { $project: { _id: 0, name: 1, dept: "departement" } },
+]);
 
-db.marks.aggregate([
-    {$group:{
-        _id:{name: "$name", term: "$term"},
-        total: {$sum: "$marks"}
-    }}
-]).sort({_id: 1})
+db.employees.aggregate([{ $project: { _id: 0, name: 1, salary: 1 } }]);
+
+db.employees.updateOne({ name: "John Smith" }, { $set: { salary: 3400 } });
+
+db.employees.updateMany({ departement: "IT" }, { $set: { strSalary: "2500" } });
+
+db.employees.aggregate([
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      departement: 1,
+      Sal: { $convert: { input: "$strSalary", to: "int" } },
+    },
+  },
+  {
+    $group: {
+      _id: "$departement",
+      total: { $sum: "$Sal" },
+    },
+  },
+  {
+    $out: "deptWiseSalary",
+  },
+]);
+
+db.createView("deptWiseSalaryView", "employees", [
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      departement: 1,
+      Sal: { $convert: { input: "$strSalary", to: "int" } },
+    },
+  },
+  {
+    $group: {
+      _id: "$departement",
+      total: { $sum: "$Sal" },
+    },
+  }
+]);
