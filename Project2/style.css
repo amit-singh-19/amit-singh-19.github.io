@@ -190,26 +190,86 @@ body {
 
 .hero-container{
     display: flex;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     margin: 0.5rem 1rem;
     gap: 20px;
-    height: 70vh;
+    height: 71vh;
 }
 
 .hero-container .left-container {
     display: flex;
     flex-direction: column;
     width: 60%;
+    background-color: #def1f9;
+    border-radius: 10px;
 }
 
 .hero-container .left-container .box1{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     /* align-items: center; */
 }
 
 .hero-container .left-container .box1 .hero-image img{
-    width: 300px;
+    width: 400px;
     max-width: 100%;
     border-radius: 10px;
+}
+
+.box1 .hero-text {
+  padding: 4rem 2.5rem;
+}
+
+.box1 .hero-text p:first-child{
+  color: rgb(250, 213, 6);
+  font-size: 2rem;
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 1.2rem;
+}
+
+.box1 .hero-text h1{
+  font-size: 3rem;
+  margin-bottom: 1.2rem;
+  line-height: 1.2;
+}
+
+.box1 .hero-text .text{
+  color:#6c757d;
+  line-height: 1.5;
+  margin-bottom: 1.4rem;
+}
+
+.box1 .hero-text button {
+  padding: 0.8rem 1.1rem;
+  background-color: transparent;
+  border: 2px solid #7e7575;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #7e7575;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.box1 .hero-text button:hover{
+  background-color: #343a40;
+  color: white;
+}
+
+.left-container .box2 {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  height: 100%;
+  gap: 10px;
+}
+.left-container .box2 .dot {
+  height: 12px;
+  width: 12px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.left-container .box2 .dot:first-child{
+  background-color: goldenrod;
 }
