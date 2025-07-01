@@ -174,12 +174,12 @@ body {
   transition: all 0.3s ease;
 }
 
-.nav-departments .item-category ul li:hover{
-    color: #495057;
+.nav-departments .item-category ul li:hover {
+  color: #495057;
 }
 
-.nav-departments .item-category ul li:hover::after{
-    width: 100%;
+.nav-departments .item-category ul li:hover::after {
+  width: 100%;
 }
 .pages select {
   border: none;
@@ -187,54 +187,55 @@ body {
   color: #6c757d;
 }
 
-
-.hero-container{
-    display: flex;
-    /* border: 1px solid red; */
-    margin: 0.5rem 1rem;
-    gap: 20px;
-    height: 71vh;
+.hero-container {
+  display: flex;
+  /* border: 1px solid red; */
+  margin: 0.5rem 1rem;
+  gap: 20px;
+  height: 73vh;
 }
 
 .hero-container .left-container {
-    display: flex;
-    flex-direction: column;
-    width: 60%;
-    background-color: #def1f9;
-    border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  background-color: #def1f9;
+  border-radius: 10px;
 }
 
-.hero-container .left-container .box1{
-    /* border: 1px solid red; */
-    display: flex;
-    /* align-items: center; */
+.hero-container .left-container .box1 {
+  /* border: 1px solid red; */
+  display: flex;
+  /* align-items: center; */
 }
 
-.hero-container .left-container .box1 .hero-image img{
-    width: 400px;
-    max-width: 100%;
-    border-radius: 10px;
+.hero-container .left-container .box1 .hero-image img {
+  padding-top: 20px;
+  padding-right: 10px;
+  width: 430px;
+  max-width: 100%;
+  border-radius: 10px;
 }
 
 .box1 .hero-text {
   padding: 4rem 2.5rem;
 }
 
-.box1 .hero-text p:first-child{
+.box1 .hero-text p:first-child {
   color: rgb(250, 213, 6);
   font-size: 2rem;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   margin-bottom: 1.2rem;
 }
 
-.box1 .hero-text h1{
+.box1 .hero-text h1 {
   font-size: 3rem;
   margin-bottom: 1.2rem;
   line-height: 1.2;
 }
 
-.box1 .hero-text .text{
-  color:#6c757d;
+.box1 .hero-text .text {
+  color: #6c757d;
   line-height: 1.5;
   margin-bottom: 1.4rem;
 }
@@ -251,7 +252,7 @@ body {
   transition: all 0.3s ease;
 }
 
-.box1 .hero-text button:hover{
+.box1 .hero-text button:hover {
   background-color: #343a40;
   color: white;
 }
@@ -270,6 +271,6 @@ body {
   border-radius: 50%;
 }
 
-.left-container .box2 .dot:first-child{
+.left-container .box2 .dot:first-child {
   background-color: goldenrod;
 }
