@@ -1,0 +1,2 @@
+This is about me. 
+Hello, I'm Amit Singh. Currently learning NodeJS.
