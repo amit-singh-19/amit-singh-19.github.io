@@ -6,7 +6,7 @@ app.listen(8080, (req, res) => {
   console.log("Server running");
 });
 
-app.use(express.json());
+app.use(express.json());  //allow express to read data sent in JSON format from frontend
 
 let products = [];
 // app.post("/", (req, res) => {
@@ -55,7 +55,7 @@ app.delete("/:id", (req, res) => {
 
 app.delete("/:id", (req, res) => {
   try {
-    const id = Number(req.params.id);
+    const id = Number(req.params.id);  
     products = products.filter((product) => product.id !== id);
     res.json("Product deleted");
   } catch (error) {

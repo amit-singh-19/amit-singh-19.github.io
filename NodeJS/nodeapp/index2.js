@@ -1,4 +1,4 @@
-import fs, { appendFile } from "fs";
+import fs from "fs";
 
 //------write------
 
@@ -26,6 +26,7 @@ fs.rename("myfile.txt", "newfile.txt", (err) => {
 });
 */
 
+//-----Delete file------
 fs.unlink("newfile.txt", (err) => {
     if(err) throw err;
     console.log("File deleted successfully!")

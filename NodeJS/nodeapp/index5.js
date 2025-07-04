@@ -7,7 +7,7 @@ const logger = (req, res, next) => {
   next();
 };
 //if we want to use the middleware anywhere then use (.use)
-// app.use(logger);
+app.use(logger);
 
 app.get("/", (req, res) => {
   res.send(req.message);
