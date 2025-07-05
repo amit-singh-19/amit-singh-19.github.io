@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
-dotenv.config()
+dotenv.config();
 const SECRET_KEY = "mysecretkey";
 
 const app = express();
@@ -56,7 +56,12 @@ app.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (isMatch) {
-      const token = jwt.sign({name: user.name, email: user.email, role: user.role}, SECRET_KEY, { expiresIn: "1h" });
+      const userObj = {
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      };
+      const token = jwt.sign(userObj, SECRET_KEY, { expiresIn: "1h" });
       res.status(201).json({ message: "Login Successful", token: token });
     } else {
       res.status(400).json({ message: "Incorrect Password" });
@@ -67,13 +72,45 @@ app.post("/login", async (req, res) => {
   }
 });
 
+const authenticate = (req, res, next) => {
+  try {
+    const authHeader = req.headers.authorization;
+    if (!authHeader) res.status(400).json({ message: "No Token Found" });
+
+    const token = authHeader.split(" ")[1];
+    const user = jwt.verify(token, SECRET_KEY);
+    req.user = user;
+    next();
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong" });
+  }
+};
+
+const authorize = (role) => {
+  return (req, res, next) => {
+    if (req.user.role === role) next();
+    else res.status(400).json({ message: "Unauthorize Access" });
+  };
+};
+
 // Fetching users data from database
-app.get("/users", async (req, res) => {
+app.get("/users", authenticate, authorize("admin"), async (req, res) => {
   try {
     const result = await userModel.find();
     res.status(200).json(result);
   } catch (error) {
     console.log(err);
+    res.status(400).json({ message: "Something went wrong" });
+  }
+});
+
+app.get("/dashboard", authenticate, (req, res) => {
+  try {
+    const result = req.user;
+    res
+      .status(201)
+      .json({ message: `Hello, ${result.name}. Welcome to DashBoard!!` });
+  } catch (error) {
     res.status(400).json({ message: "Something went wrong" });
   }
 });
