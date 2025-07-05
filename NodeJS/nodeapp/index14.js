@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 import express from "express";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config()
+const SECRET_KEY = "mysecretkey";
 
 const app = express();
 mongoose.connect("mongodb://localhost:27017/lpu").then(() => {
@@ -22,7 +27,7 @@ const userModel = mongoose.model("User", userSchema);
 
 app.use(express.json());
 
-// inserting userdata to database 
+// inserting userdata to database
 app.post("/register", async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
@@ -37,6 +42,28 @@ app.post("/register", async (req, res) => {
     res.status(201).json(result);
   } catch (error) {
     res.status(400).json({ message: "Something went wrong" });
+  }
+});
+
+//login
+
+app.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await userModel.findOne({ email });
+    if (!user) res.status(400).json({ message: "Email not found" });
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (isMatch) {
+      const token = jwt.sign({name: user.name, email: user.email, role: user.role}, SECRET_KEY, { expiresIn: "1h" });
+      res.status(201).json({ message: "Login Successful", token: token });
+    } else {
+      res.status(400).json({ message: "Incorrect Password" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Something went wrong" });
   }
 });
 
