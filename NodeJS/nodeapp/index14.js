@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 dotenv.config();
-const SECRET_KEY = "mysecretkey";
+const SECRET_KEY = process.env.SECRET_KEY;
 
 const app = express();
 mongoose.connect("mongodb://localhost:27017/lpu").then(() => {

@@ -43,9 +43,9 @@ app.listen(8080, () => {
 //   res.send(req.params.name + req.params.age);
 // });
 
-// app.get("/", (req, res) => {
-//   res.send(req.headers.authorization);
-// });
+app.get("/", (req, res) => {
+  res.send(req.headers.authorization);
+});
 
 //passing data in URL
 //localhost:8080/?name=john&age=19
@@ -55,21 +55,21 @@ app.listen(8080, () => {
 
 
 //Get Method
-app.get('/', (req, res) => {
-    res.send("Get Request");
-})
+// app.get('/', (req, res) => {
+//     res.send("Get Request");
+// })
 
-//Post Method
-app.post('/', (req, res) => {
-    res.send("Post Request");
-})
+// //Post Method
+// app.post('/', (req, res) => {
+//     res.send("Post Request");
+// })
 
-//Delete Method
-app.delete('/', (req, res) => {
-    res.send("Delete Request");
-})
+// //Delete Method
+// app.delete('/', (req, res) => {
+//     res.send("Delete Request");
+// })
 
-//Patch Method
-app.patch('/', (req, res) => {
-    res.send("Path Request");
-})
+// //Patch Method
+// app.patch('/', (req, res) => {
+//     res.send("Path Request");
+// })
