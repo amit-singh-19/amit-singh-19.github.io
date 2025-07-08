@@ -36,6 +36,22 @@ section {
 .menu ul li {
   list-style: none;
   margin: 0px 25px;
+  position: relative;
+}
+
+.menu ul li::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 0%;
+  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+  transition: all 0.3s ease;
+}
+
+.menu ul li:hover::after {
+  width: 100%;
 }
 
 .menu ul li a {
@@ -145,7 +161,7 @@ section {
   transform: translateY(-10px);
 }
 
-.view-project-btn{
+.view-project-btn {
   margin: 20px 0px;
   border-radius: 50px;
   font-size: 0.9rem;
@@ -161,10 +177,10 @@ section {
   cursor: pointer;
 }
 
-.view-project-btn:hover{
+.view-project-btn:hover {
   background: #00b8ff;
 }
-.view-project-btn a:hover{
+.view-project-btn a:hover {
   color: #0a1f3b;
 }
 
