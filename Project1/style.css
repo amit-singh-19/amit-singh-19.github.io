@@ -23,7 +23,7 @@ body {
   /* border: 1px solid red; */
   display: flex;
   max-width: 1000px;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   align-items: stretch;
   gap: 20px;
 }

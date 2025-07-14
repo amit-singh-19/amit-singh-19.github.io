@@ -1,7 +1,6 @@
 import { nanoid } from "nanoid";
 import URL from "../models/urlModel.js";
 
-
 const handleGenerateNewShortURL = async (req, res) => {
   const shortID = nanoid(8);
   const { url } = req.body;
@@ -14,7 +13,10 @@ const handleGenerateNewShortURL = async (req, res) => {
     visitHistory: [],
   });
 
-  return res.json({ id: shortID });
+  // return res.json({ id: shortID });
+  return res.render("home", {
+    id: shortID,
+  });
 };
 
 const generateShortURL = async (req, res) => {
