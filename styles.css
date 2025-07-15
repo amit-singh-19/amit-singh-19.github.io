@@ -196,6 +196,7 @@ section {
 
 .service-content {
   display: flex;
+  flex-wrap: wrap;
   /* margin: 2rem; */
 }
 
