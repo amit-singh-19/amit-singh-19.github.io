@@ -196,7 +196,7 @@ section {
 
 .service-content {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   /* margin: 2rem; */
 }
 
@@ -230,7 +230,7 @@ section {
 }
 .about-container {
   display: flex;
-  max-width: 1280px;
+  max-width: 1200px;
   gap: 10rem;
   /* align-items: center; */
   margin: 0 auto;
